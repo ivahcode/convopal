@@ -3,6 +3,7 @@ from speechbrain.pretrained import SpeakerRecognition
 import tempfile
 import os
 import time
+from huggingface_hub import InferenceClient
 
 app = Flask(__name__)
 recognizer = SpeakerRecognition.from_hparams(source="speechbrain/spkrec-ecapa-voxceleb", savedir="pretrained_model")
@@ -57,4 +58,5 @@ def is_it_me():
     })
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 7860))
+    app.run(host="0.0.0.0", port=port)
