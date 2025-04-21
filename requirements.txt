@@ -1,0 +1,3 @@
+flask
+speechbrain
+torchaudio
